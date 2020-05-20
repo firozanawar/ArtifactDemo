@@ -1,49 +1,19 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven-publish'
-
-android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-}
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
-
+implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
+sourceCompatibility = "7"
+targetCompatibility = "7"
+
 //region Publish to jCenter
-def libGroupId = 'in.growthrx.artifact.mylibraryarr'
-def libArtifactId = 'mylibraryarr'
+def libGroupId = 'in.growthrx.artifact.mylibraryjar'
+def libArtifactId = 'mylibraryjar'
 def libVersion = '1.0.0'
-def libDesc = 'This is an Android project allowing log the messges'
+def libDesc = 'This is an Android project allowing error log the messges'
 def libLicenses = ['Apache-2.0']
 def libVCSUrl = 'https://github.com/firozanawar/ArtifactDemo.git'
 
@@ -75,7 +45,7 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     publications = ['MyPublication']
     pkg {
-        repo = "Maven"
+        repo = "mylibraryjar"
         name = "$libGroupId:$libArtifactId"
         desc = libDesc
         licenses = libLicenses

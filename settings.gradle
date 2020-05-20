@@ -1,3 +1,4 @@
 rootProject.name='GrowthRxArtifactDemo'
 include ':app'
 include ':mylibraryarr'
+include ':mylibraryjar'
